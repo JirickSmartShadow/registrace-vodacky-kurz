@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <title>Vodácký kurz</title>
+</head>
+<body>
+    <header>
+        <h1>Již podané registrace</h1>
+    </header>
+    <main>
+        <div id="vyrizene_registrace">
+        {% if prihlasky|length == 0 %}
+            <p>Žádná registrace zatím nebyla vyřízena</p>
+            <br>
+        {% else %}
+            {% for prihlaska in prihlasky %}
+            <div class="hide_first horizontal_div"></div>
+            <br class="hide_first">
+            <div class='zadost'>
+                <p>Přezdívka: {{ prihlaska['prezdivka'] }}</p>
+                {% if prihlaska['kamarad'] %}
+                <p>Spolujezdec: {{ prihlaska['kamarad'] }}</p>
+                {% else %}
+                <p>Spolujezdec neuveden</p>
+                {% endif %}
+                {% if prihlaska['plavec'] == 'plavec' %}
+                <p>Plavec</p>
+                {% else %}
+                <p>Neplavec</p>
+                {% endif %}
+            </div>
+            <br>
+            {% endfor %}
+        {% endif %}
+        </div>
+        <br>
+        <a class="redirect_button" href="/">Zpět</a>
+    </main>
+</body>
+</html>
